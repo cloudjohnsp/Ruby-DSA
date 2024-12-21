@@ -1,3 +1,4 @@
+# Linked List Node definition
 class ListNode
   attr_accessor :data, :next_item
 
@@ -8,6 +9,7 @@ class ListNode
 
 end
 
+# Linked List definition
 class LinkedList
   attr_accessor = :head
 
@@ -15,6 +17,7 @@ class LinkedList
     @head = nil
   end
 
+  # inserts at end
   def append(data)
     new_node = ListNode.new(data)
     if @head.nil?
@@ -27,12 +30,14 @@ class LinkedList
     end
   end
 
+  # inserts at start
   def prepend(data)
     new_node = ListNode.new(data)
     new_node.next_item = @head
     @head = new_node
   end
 
+  # prints all nodes
   def print_list
     current = @head
     while current
@@ -42,6 +47,7 @@ class LinkedList
     puts "nil"
   end
 
+  # find a specific node
   def find(item)
     current = @head
     while current
@@ -51,12 +57,29 @@ class LinkedList
     nil
   end
 
+  def delete(item)
+    return if @head.nil?
+
+    if @head.data == item
+      @head = @head.next_item
+      return
+    end
+
+    current = @head
+    while current.next_item && current.next_item.data != item
+      current = current.next_item
+    end
+
+    current.next_item = current.next_item.next_item if current.next_item
+  end
+
 end
 
 list = LinkedList.new
 list.append(1)
 list.append(2)
 list.prepend(0)
+list.delete(1)
 list.print_list
 
 found_node = list.find(5)
