@@ -1,9 +1,9 @@
 class ListNode
   attr_accessor :data, :next_item
 
-  def initialize(data, next_item)
+  def initialize(data)
     @data = data
-    @next_item = next_item
+    @next_item = nil
   end
 
 end
@@ -16,7 +16,7 @@ class LinkedList
   end
 
   def append(data)
-    new_node = ListNode.new(data, nil)
+    new_node = ListNode.new(data)
     if @head.nil?
       @head = new_node
 
@@ -25,6 +25,12 @@ class LinkedList
       current = current.next_item while current.next_item
       current.next_item = new_node
     end
+  end
+
+  def prepend(data)
+    new_node = ListNode.new(data)
+    new_node.next_item = @head
+    @head = new_node
   end
 
   def print_list
@@ -41,4 +47,5 @@ end
 list = LinkedList.new
 list.append(1)
 list.append(2)
+list.prepend(0)
 list.print_list
