@@ -18,7 +18,7 @@ class LinkedList
   end
 
   def get_head
-    return @head if !@head.nil?
+    return @head if @head
   end
 
   # inserts at end
@@ -78,14 +78,35 @@ class LinkedList
     current.next_item = current.next_item.next_item if current.next_item
   end
 
+
+  def delete_at_head
+    if @head.data
+      @head = @head.next_item
+    end
+  end
+
+  def delete_at_end
+    return if @head.nil?
+    if @head.next_item.nil?
+      @head = nil
+    else
+      current = @head
+      current = current.next_item while current.next_item.next_item
+      current.next_item = nil
+    end
+  end
+
 end
 
 list = LinkedList.new
-list.append(1)
-list.append(2)
+list.append(3)
+list.append(4)
+list.append(5)
+list.prepend(2)
+list.prepend(1)
 list.prepend(0)
-list.prepend(10)
-list.delete(1)
+list.delete_at_head
+list.delete_at_end
 list.print_list
 
 found_node = list.find(5)
