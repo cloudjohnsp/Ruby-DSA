@@ -17,6 +17,10 @@ class LinkedList
     @head = nil
   end
 
+  def get_head
+    return @head if !@head.nil?
+  end
+
   # inserts at end
   def append(data)
     new_node = ListNode.new(data)
@@ -80,8 +84,11 @@ list = LinkedList.new
 list.append(1)
 list.append(2)
 list.prepend(0)
+list.prepend(10)
 list.delete(1)
 list.print_list
 
 found_node = list.find(5)
+returned_head = list.get_head
 puts "Found: #{found_node.data}" if found_node
+puts "Current Head is #{returned_head.data}" if returned_head
