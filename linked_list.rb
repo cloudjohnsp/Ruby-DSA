@@ -57,6 +57,7 @@ class LinkedList
     nil
   end
 
+  # removes a node
   def delete(item)
     return if @head.nil?
 
